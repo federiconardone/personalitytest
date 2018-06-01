@@ -17,7 +17,7 @@ import pckUtilities.TestController;
  * values of all users
  */
 @SuppressWarnings("serial")
-public class ChartSummary extends JPanel {
+public class ChartSummary extends JPanel implements ChartAttrsGlobal {
 	
 	@SuppressWarnings("unused")
 	private static TabStatPanel tabStatPanel;

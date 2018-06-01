@@ -16,7 +16,7 @@ import pckUtilities.TestController;
  * calculated from all user value
  */
 @SuppressWarnings("serial")
-public class ChartAverage extends JPanel {
+public class ChartAverage extends JPanel implements ChartAttrsGlobal {
 	
 	@SuppressWarnings("unused")
 	private static TabStatPanel tabStatPanel;

@@ -49,6 +49,7 @@ public class TabSearchPanel extends JPanel{
 	private static JTextPane searchChartTitleArea;
 	private static JButton btnChartReset;
 	private static JTextArea testIntroArea;
+	private static MessageBoxMaker activeMsg;
 	//private static int graphStatus;
     
 	public TabSearchPanel(String tabName, PersonalityTestPanel personalityTestPanel) {
@@ -151,7 +152,8 @@ public class TabSearchPanel extends JPanel{
         		int resultCounter = 0;
         		List<String> searchResult = new ArrayList<String>();
         		if (nickField.equals("")) {
-        			MessageBoxMaker.EmptyUsername();
+        			activeMsg = new MessageBoxMaker("EmptyUsername");
+        			activeMsg.MessageCreator();
         		}
         		else
         		{
@@ -172,15 +174,23 @@ public class TabSearchPanel extends JPanel{
         			}
         			listSearch = new String [resultCounter][6];
         			
-        			if (searchKey.equals(""))
-        				MessageBoxMaker.EmptyUsername();
+        			if (searchKey.equals("")) {
+        				activeMsg = new MessageBoxMaker("EmptyUsername");
+        				activeMsg.MessageCreator();
+        			}
         			else
         				if(resultCounter == 0)
-        					MessageBoxMaker.EmptySearch();
+        				{
+        					activeMsg = new MessageBoxMaker("EmptySearch");
+        					activeMsg.MessageCreator();
+        				}
         				else
         					//After 3 results, the system ask to the user a more accurate search
         					if (resultCounter > 3)
-            					MessageBoxMaker.ToomuchSearch();
+        					{
+        						activeMsg = new MessageBoxMaker("ToomuchSearch");
+        						activeMsg.MessageCreator();
+        					}
             				else
             				{
             					//If the search is correct, it creates a row for each result

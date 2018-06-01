@@ -3,7 +3,6 @@ package pckApplication;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -44,6 +43,8 @@ public class PersonalityTestMenu {
     
 	private static JMenuItem exitMenu;
 	private static JMenuItem aboutMenu;
+	
+	private static MessageBoxMaker activeMsg;
     
 	
 	public static void createMenu(JFrame frame) {
@@ -102,17 +103,13 @@ public class PersonalityTestMenu {
             JMenuItem activeButton = (JMenuItem) event.getSource();
             String text = activeButton.getText();
             if (text.equals(StringLocalizer.getMenuExit())) {
-            		MessageBoxMaker.MessageBoxExit();
+            		//MessageBoxMaker.MessageBoxExit();
             }
             else
             {
             		if (text.equals(StringLocalizer.getDelButton())) {
-            			try {
-							MessageBoxMaker.DelConfirm();
-						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+            			activeMsg = new MessageBoxMaker("DelConfirm");
+	        			activeMsg.MessageCreator();
                 }
             		else
             		{
@@ -130,15 +127,8 @@ public class PersonalityTestMenu {
             			{
             				if (text.equals(StringLocalizer.getImpButton())) {
                             	
-            					try {
-									MessageBoxMaker.RestoreConfirm();
-								} catch (FileNotFoundException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
+            					activeMsg = new MessageBoxMaker("RestoreConfirm");
+		        				activeMsg.MessageCreator();
                          }
             				else
             				{

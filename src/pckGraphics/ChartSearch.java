@@ -14,7 +14,7 @@ import pckUtilities.TestController;
  * Is the summary class referred to a single user
  */
 @SuppressWarnings("serial")
-public class ChartSearch extends JPanel {
+public class ChartSearch extends JPanel implements ChartAttrsGlobal, ChartAttrsUser {
 	
 	@SuppressWarnings("unused")
 	private static TabSearchPanel tabSearchPanel;

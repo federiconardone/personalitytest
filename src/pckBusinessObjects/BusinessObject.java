@@ -28,6 +28,7 @@ import pckUtilities.StringLocalizer;
 public class BusinessObject {
 	
 	private static final String DATA_FILE_PATH = ProjectVars.getDataFilePath();
+	private static MessageBoxMaker activeMsg;
 	
 	public static void WriteResult(String user, Float [] resultValues) throws IOException {
 		
@@ -301,7 +302,8 @@ public class BusinessObject {
 		PrintWriter writer = new PrintWriter(new File(DATA_FILE_PATH));
 		writer.print("");
 		writer.close();
-		MessageBoxMaker.DelDone();
+		activeMsg = new MessageBoxMaker("DelDone");
+		activeMsg.MessageCreator();
 		
 		try {
 			BusinessObject.HashInitialize();

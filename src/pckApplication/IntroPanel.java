@@ -25,6 +25,8 @@ public class IntroPanel extends JPanel {
 	/**
 	 * 
 	 */
+	MessageBoxMaker activeMsg;
+	
 	private static final long serialVersionUID = 1L;
 	
 	@SuppressWarnings("unused")
@@ -77,7 +79,10 @@ public class IntroPanel extends JPanel {
         			
         			//If the data file is corrupted, suggest to the user a data reset
         			if (BusinessObject.rowCounter() > 4 && !BusinessObject.HashMatcher())
-        				MessageBoxMaker.ResetConfirm();
+        			{
+        				activeMsg = new MessageBoxMaker("ResetConfirm");
+            			activeMsg.MessageCreator();
+        			}
         			
         			PersonalityTest personalityTest = new PersonalityTest();
 					
@@ -91,7 +96,8 @@ public class IntroPanel extends JPanel {
         exitButton.setFont(LayoutVars.getButtonFont());
         exitButton.setPreferredSize(LayoutVars.getButtonDimensions());
         exitButton.addActionListener((event)->{ 
-        		MessageBoxMaker.MessageBoxExit();
+        		activeMsg = new MessageBoxMaker("Exit");
+        		activeMsg.MessageCreator();
         	});
         
         buttonsPanel.add(exitButton);

@@ -38,6 +38,7 @@ public class TabTestPanelButtons extends JPanel {
 	private static JButton btnReset;
 	private static JButton btnConfirm;
 	private static boolean progressCheck;
+	private static MessageBoxMaker activeMsg;
 	
 	public TabTestPanelButtons(TabTestPanel tabTestPanel, JRadioButton[] answerButton, JPanel resultsPanel, JPanel testPanel, JPanel startPanel) {
 		
@@ -86,11 +87,15 @@ public class TabTestPanelButtons extends JPanel {
         		if (testStep == 0)
         		{
         			try {
-        					if (TabTestPanel.getUser().equals(""))
-        						MessageBoxMaker.EmptyUsername();
+        					if (TabTestPanel.getUser().equals("")) {
+        						activeMsg = new MessageBoxMaker("EmptyUsername");
+                				activeMsg.MessageCreator();
+        					}
         					else
-        						if (BusinessObject.CheckUsername(TabTestPanel.getUser()) == false)
-        							MessageBoxMaker.InvalidUsername();
+        						if (BusinessObject.CheckUsername(TabTestPanel.getUser()) == false) {
+        							activeMsg = new MessageBoxMaker("InvalidUsername");
+                    				activeMsg.MessageCreator();
+        						}
         						else
         						{
         							userName = TabTestPanel.getUser();
@@ -106,7 +111,8 @@ public class TabTestPanelButtons extends JPanel {
         			
         			if (testResult == 0 && this.answerValues[testStep - 1] == 0)
         			{
-        				MessageBoxMaker.EmptyResult();
+        				activeMsg = new MessageBoxMaker("EmptyResult");
+        				activeMsg.MessageCreator();
         			}
         			else
         			{

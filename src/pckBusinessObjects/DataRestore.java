@@ -22,6 +22,7 @@ public class DataRestore extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static MessageBoxMaker activeMsg;
 	
 	public void RestoreMaker() throws IOException {
 		
@@ -37,8 +38,10 @@ public class DataRestore extends JPanel{
 	          System.out.println(f);      
 	          
 	          //Check the hash value
-	          if (!BusinessObject.HashMatcher(f.toString()))
-	        	  	MessageBoxMaker.RestoreWrong();
+	          if (!BusinessObject.HashMatcher(f.toString())) {
+		  		  activeMsg = new MessageBoxMaker("RestoreWrong");
+				  activeMsg.MessageCreator();
+	          }
 	          else
 	          {
 		        	  BusinessObject.DeleteResults();

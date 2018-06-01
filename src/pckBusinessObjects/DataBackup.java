@@ -30,6 +30,7 @@ public class DataBackup extends JPanel {
 	private static final String DATA_FILE_PATH = ProjectVars.getDataFilePath();
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 	Date date = new Date();
+	private static MessageBoxMaker activeMsg;
 	
 	@SuppressWarnings("resource")
 	public void BackupMaker() throws IOException {
@@ -48,7 +49,8 @@ public class DataBackup extends JPanel {
 	          source.transferTo(0, source.size(), dest);
 	          source.close();
 	          dest.close();
-	          MessageBoxMaker.BackupDone();
+	  		  activeMsg = new MessageBoxMaker("BackupDone");
+			  activeMsg.MessageCreator();
 	    }
 	}
 }

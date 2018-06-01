@@ -1,43 +1,44 @@
 package pckUtilities;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import javax.swing.JOptionPane;
-
-import pckApplication.TabStatPanel;
-import pckBusinessObjects.BusinessObject;
-import pckBusinessObjects.DataRestore;
-
 /*
  * Manage all message box and relative behavior; manage also
  * the message layout using some HTML simple properties
  */
-public class MessageBoxMaker {
+
+public class MessageBoxMaker extends MessageBoxAttrs {
 	
 	//Manage the text layout using HTML
+	
+	String[] boxButtons2;
+	String boxTitle2;
+	String boxMessage2;
+	
+	public MessageBoxMaker(String boxType) {
+		super (boxType);
+	}
+	
+	/*
 	private static String MessageRender (String boxMessage) {
 		
 		String outMessage = "";
 		outMessage = "<html><body><p style='width: 300px;'>" + boxMessage + "</p></body></html>";
 		return outMessage;
-	}
+	}*/
 	
-	public static void MessageBoxExit() {
+	
+	public void MessageCreator() {
 		
-		String[] boxButtons = {StringLocalizer.getExitBoxConfirm(), StringLocalizer.getExitBoxCancel()};
-		String boxTitle = StringLocalizer.getExitBoxTitle();
-		String boxMessage = MessageRender(StringLocalizer.getExitBoxMessage());
-		int exitValue = JOptionPane.showOptionDialog(null, boxMessage, boxTitle, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, boxButtons, boxButtons[1]);
-		switch (exitValue){
+		switch (getValue()){
 		case 0:
-			System.exit(0);
+			getFunction(0);
 			break;
 		case 1:
+			getFunction(1);
 			break;
 		}
 	}
 	
+	/*
 	public static void InvalidUsername () {
 		
 		String[] boxButtons = {StringLocalizer.getExitBoxConfirm()};
@@ -193,5 +194,5 @@ public class MessageBoxMaker {
 		case 0:
 			break;
 		}
-	}
+	}*/
 }
