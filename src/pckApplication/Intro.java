@@ -11,7 +11,7 @@ import pckUtilities.StringLocalizer;
 
 /*
  * It is the starting point of the application; it contains the method
- * for the language selection test
+ * for the language selection
  */
 public class Intro {
 	
